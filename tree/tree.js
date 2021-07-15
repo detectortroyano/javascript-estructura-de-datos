@@ -22,17 +22,32 @@ class MyTree {
                     if (!currentNode.left) {
                         currentNode.left = newNode;
                         return this;
-                    } else {
-                        currentNode = currentNode.left;
                     }
-                } else {
+                    currentNode = currentNode.left;
+                } else if (value > currentNode.value) {
                     if (!currentNode.rigth) {
                         currentNode.rigth = newNode;
                         return this;
-                    } else {
-                        currentNode = currentNode.rigth;
                     }
+                    currentNode = currentNode.rigth;
+                } else {
+                    return "Ya existe";
                 }
+            }
+        }
+    }
+
+    search(value) {
+        let currentNode = this.root;
+        while (true) {
+            if (currentNode == null) {
+                return "No existe";
+            } else if (value < currentNode.value) {
+                currentNode = currentNode.left;
+            } else if (value > currentNode.value) {
+                currentNode = currentNode.rigth;
+            } else {
+                return currentNode;
             }
         }
     }
@@ -46,3 +61,5 @@ myTree.insert(2);
 myTree.insert(8);
 myTree.insert(17);
 myTree.insert(170);
+myTree.search(5);
+myTree.search(4);
